@@ -15,3 +15,52 @@ export const showIncomingCallDialog = (callType, acceptCallHandler, rejectCallHa
     dialog.appendChild(incomingCallDialog)
 
 }
+
+export const showCallingDialog = (rejectCallHandler) => {
+    const callingDialog = elements.getCallingDialog(rejectCallHandler)
+    const dialog = document.getElementById('dialog')
+    dialog.querySelectorAll('*').forEach((dialog) => dialog.remove())
+    dialog.appendChild(callingDialog)
+
+}
+
+export const showInfoDialog = (preOfferAnswer) => {
+    let infoDialog = null
+    if (preOfferAnswer === constants.preOfferAnswer.CALL_REJECTED) {
+        infoDialog = elements.getInfoDialog(
+            'Call rejected',
+            'Callee rejected your call'
+
+        )
+    }
+
+    if (preOfferAnswer === constants.preOfferAnswer.CALLEE_NOT_FOUND) {
+        infoDialog = elements.getInfoDialog(
+            'Callee not found ',
+            'Please check personal code'
+
+        )
+    }
+
+    if (preOfferAnswer === constants.preOfferAnswer.CALL_UNAVAILABLE) {
+        infoDialog = elements.getInfoDialog(
+            'Call is not possible',
+            'probably callee is busy, please try again later'
+
+        )
+    }
+
+    if (infoDialog) {
+        const dialog = document.getElementById('dialog')
+        dialog.appendChild(infoDialog)
+        setTimeout(() => {
+            removeAllDialogs()
+        }, [4000])
+    }
+
+}
+
+export const removeAllDialogs = () => {
+    const dialog = document.getElementById('dialog')
+    dialog.querySelectorAll('*').forEach((dialog) => dialog.remove())
+}

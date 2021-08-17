@@ -27,6 +27,27 @@ io.on("connection", (socket) => {
                 callType,
             }
             io.to(calleePersonalCode).emit("pre-offer", data)
+        } else {
+            const data = {
+                preOfferAnswer: 'CALLEE_NOT_FOUND'
+            }
+            io.to(socket.id).emit("pre-offer-answer", data)
+        }
+    })
+
+    socket.on("pre-offer-answer", (data) => {
+        console.log("pre offer answer came")
+        console.log(data)
+        const { callerSocketId } = data
+
+        const connectedPeer = connectedPeers.find((peerSockedId) =>
+            peerSockedId === callerSocketId
+
+        );
+
+        if (connectedPeer) {
+
+            io.to(callerSocketId).emit("pre-offer-answer", data)
         }
     })
     socket.on("disconnect", () => {
