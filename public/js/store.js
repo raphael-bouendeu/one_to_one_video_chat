@@ -1,57 +1,55 @@
 let state = {
-    socketId: null,
-    localStream: null,
-    remoteStream: null,
-    screanSharingStream: null,
-    allowConnectionsFromStrangers: false,
-    screenSharingActive: false,
-
+  socketId: null,
+  localStream: null,
+  remoteStream: null,
+  screenSharingActive: false,
+  screenSharingStream: null,
+  allowConnectionsFromStrangers: false,
 };
 
 export const setSocketId = (socketId) => {
-
-    state = {
-        ...state,
-        socketId,
-    };
-    console.log(state)
+  state = {
+    ...state,
+    socketId,
+  };
+  console.log(state);
 };
-export const setLocalStream = (localStream) => {
 
-    state = {
-        ...state,
-        localStream,
-    };
-}
+export const setLocalStream = (stream) => {
+  state = {
+    ...state,
+    localStream: stream,
+  };
+};
 
-export const setAllowConnectionsFromStrangers = (allowConnectionsFromStrangers) => {
-    state = {
-        ...state,
-        allowConnectionsFromStrangers,
-    };
-}
+export const setAllowConnectionsFromStrangers = (allowConnection) => {
+  state = {
+    ...state,
+    allowConnectionsFromStrangers: allowConnection,
+  };
+};
 
 export const setScreenSharingActive = (screenSharingActive) => {
-    state = {
-        ...state,
-        screenSharingActive,
-    }
-}
+  state = {
+    ...state,
+    screenSharingActive,
+  };
+};
 
-export const setScreanSharingStream = (screanSharingStream) => {
-    state = {
-        ...state,
-        screanSharingStream,
-    }
-}
+export const setScreenSharingStream = (stream) => {
+  state = {
+    ...state,
+    screenSharingStream: stream,
+  };
+};
 
-export const setRemoteStream = (remoteStream) => {
-    state = {
-        ...state,
-        remoteStream,
-    };
-}
+export const setRemoteStream = (stream) => {
+  state = {
+    ...state,
+    remoteStream: stream,
+  };
+};
 
 export const getState = () => {
-    return state;
-}
+  return state;
+};
